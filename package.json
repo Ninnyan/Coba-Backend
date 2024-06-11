@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-controller": "node ./scripts/generateController.js"
   },
   "keywords": [],
-  "author": "Muhammad Irhas Albais",
+  "author": "Muhammad Nabil Sholahudin",
   "license": "ISC",
   "dependencies": {
     "mysql2": "^3.10.0",
