@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "exngines": {
+    "node": "18.x"
+  },
   "scripts": {
     "prod": "node index.js",
     "start": "nodemon index.js",
