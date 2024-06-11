@@ -12,7 +12,7 @@ const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
-
+console.log(process.env.NODE_ENV);
 sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 sequelize.authenticate().then(()=>{
