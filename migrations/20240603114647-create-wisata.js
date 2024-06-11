@@ -35,13 +35,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       photos_1: {
-        type: Sequelize.BLOB('long')
+        type: Sequelize.STRING
       },
       photos_2: {
-        type: Sequelize.BLOB('long')
+        type: Sequelize.STRING
       },
       photos_3: {
-        type: Sequelize.BLOB('long')
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

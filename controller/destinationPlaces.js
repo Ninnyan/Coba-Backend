@@ -1,6 +1,7 @@
 const destinationPlaces = {}
 const dotenv = require("dotenv")
 const {Provinsi, Wisata, Order, Riwayat, sequelize} = require('../models')
+const path = require('path')
 dotenv.config()
 
 const API_KEY = process.env.API_MAP_KEY;  // Ganti dengan API key Anda
@@ -98,22 +99,25 @@ destinationPlaces.getPhoto = async(req,res) => {
         id: id
       }
     })
-    
-    const getPhotoByReference = Array(getPhotoById.photos_1,getPhotoById.photos_2,getPhotoById.photos_3)
-    if(getPhotoByReference[photoReference] === undefined) {
-      return res.status(400).json({
-        status: "Fail",
-        message: "Data Tidak Ditemukan",
-      });
-    }
     if(!getPhotoById) {
       return res.status(400).json({
         status: "Fail",
         message: "Data Tidak Ditemukan",
       });
     }
+    const getPhotoByReference = Array(getPhotoById.photos_1,getPhotoById.photos_2,getPhotoById.photos_3)
+    
+    if(getPhotoByReference[photoReference] === undefined) {
+      return res.status(400).json({
+        status: "Fail",
+        message: "Data Tidak Ditemukan",
+      });
+    }
+
+    const filepath = path.join(__dirname, '../assets/photoWisata', getPhotoByReference[photoReference])
+
     res.set('Content-Type', 'image/jpeg');
-    return res.status(201).send(getPhotoByReference[photoReference]);
+    return res.status(201).sendFile(filepath);
   } catch (error) {
       return res.status(500).json({
         status: 'Fail',

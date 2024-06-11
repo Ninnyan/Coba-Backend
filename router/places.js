@@ -3,7 +3,15 @@ const addDataDestinationController = require("../controller/addDataDestinationCo
 const { checkRole } = require("../middleware/authVerify");
 const multer = require('multer');
 const routePlaces = express.Router()
-const storage = multer.memoryStorage();
+const storage = multer.diskStorage({
+    destination: function (req, res, cb) {
+      cb(null, "./assets/photoWisata");
+    },
+    filename: function (req, file, cb) {
+      const date = Date.now();
+      cb(null, `${date}-${file.originalname}`);
+    },
+  });
 const upload = multer({ storage: storage });
 
 

@@ -45,6 +45,12 @@ const authVerify = async (req, res, next) => {
           id_user: data.id
         }
       })
+      if(!getDataToken) {
+        return res.status(401).json({
+          status: "Fail",
+          message: "Token Masih belum ada",
+        });
+      }
       if(token !== getDataToken.token) {
         return res.status(401).json({
           status: "Fail",

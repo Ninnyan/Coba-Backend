@@ -30,9 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     harga_tiket: DataTypes.STRING,
     jam_operasional: DataTypes.STRING,
     formatted_address: DataTypes.STRING,
-    photos_1: DataTypes.BLOB('long'),
-    photos_2: DataTypes.BLOB('long'),
-    photos_3: DataTypes.BLOB('long')
+    photos_1: DataTypes.STRING,
+    photos_2: DataTypes.STRING,
+    photos_3: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Wisata',

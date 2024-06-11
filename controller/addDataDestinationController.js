@@ -84,9 +84,9 @@ addDataDestinationController.wisata = async(req,res) => {
             harga_tiket,
             jam_operasional,
             formatted_address: data.candidates[0].formatted_address,
-            photos_1: photos[0].buffer,
-            photos_2: photos[1].buffer,
-            photos_3: photos[2].buffer
+            photos_1: photos[0].filename,
+            photos_2: photos[1].filename,
+            photos_3: photos[2].filename
         });
         return res.status(201).json({
             status: "Ok",
@@ -162,9 +162,9 @@ addDataDestinationController.editWisata = async(req,res) => {
             harga_tiket,
             jam_operasional,
             formatted_address: data.candidates[0].formatted_address,
-            photos_1: photos[0].buffer,
-            photos_2: photos[1].buffer,
-            photos_3: photos[2].buffer
+            photos_1: photos[0].filename,
+            photos_2: photos[1].filename,
+            photos_3: photos[2].filename
         }, {
             where: {
                 id: getId
