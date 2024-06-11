@@ -7,8 +7,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "prod": "node index.js",
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-controller": "node ./scripts/generateController.js"
   },
