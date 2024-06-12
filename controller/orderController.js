@@ -149,7 +149,8 @@ orderController.getData = async(req,res) => {
             total: order.total_price,
             status: order.status,
             nama: order.Wisatum.name,
-            address: order.Wisatum.formatted_address
+            address: order.Wisatum.formatted_address,
+            img: 1
         }))
 
         
