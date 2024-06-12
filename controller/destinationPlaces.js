@@ -24,9 +24,7 @@ destinationPlaces.province = async(req,res) => {
         attributes: {
           exclude: ["deskripsi", "place_id","jam_operasional", "formatted_address","photos_2","photos_3","createdAt", "updatedAt"]
         }
-      }, 
-        
-      )
+      },)
 
       const mappingData = dataWisata.map((data) => ({
         id_wisata: data.id,

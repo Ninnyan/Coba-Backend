@@ -109,49 +109,32 @@ orderController.getData = async(req,res) => {
     const id_user = req.id_user
     const idUserByQuery = req.query.idUser
     try {
-
-        const getIdUserFromOrder = await Order.findAll({where:{id_user:idUserByQuery}})
+        if (id_user !== idUserByQuery) {
+            return res.status(401).json({
+                status: "Fail",
+                message: "id_user tidak match",
+            });
+        }
+        const getIdUserFromOrder = await Order.findAll({
+            include: [{
+                model: Wisata,
+                attributes: {
+                    exclude: ["id","id_wisata","tiket","order_date","expiredDate","createdAt", "updatedAt"]
+                  }
+            }],
+            attributes: {
+                exclude: ['id_province', 'place_id', 'deskripsi','harga_tiket','jam_operasional','fotmatted_address','photos_1', 'photos_2']
+            }
+        }, {
+            where: {
+                id_user: idUserByQuery
+            }
+        })
         if(getIdUserFromOrder.length === 0) {
             return res.status(401).json({
                 status: "Fail",
                 message: "id_user tidak ditemukan",
             });
-        }
-        const getDataUser = await User.findAll({where:{id:getIdUserFromOrder[0].id_user}})
-        const getDataWisata = await Wisata.findAll({where:{id:getIdUserFromOrder[0].id_wisata}})
-
-        const result = {
-            status: "Ok",
-            message: "Data Berhasil Dimuat",
-            data: getDataUser.map((user) => ({
-                id: user.id,
-                id_role: user.id_role,
-                nama: user.nama,
-                email: user.email,
-                gender: user.gender,
-                telephone: user.telephone,
-                Orders: getIdUserFromOrder.map((order) => ({
-                    id_user: order.id_user,
-                    id_wisata: order.id_wisata,
-                    order_id: order.order_id,
-                    tiket: order.tiket,
-                    qty: order.qty,
-                    total_price: order.total_price,
-                    order_date: order.order_date,
-                    status: order.status,
-                    expiredDate: order.expiredDate,
-                    Wisata: getDataWisata.map((wisata) => ({
-                        id: wisata.id,
-                        name: wisata.name,
-                        id_province: wisata.id_province,
-                        harga_tiket: wisata.harga_tiket,
-                        formatted_address: wisata.formatted_address,
-                        photos_1: 0,
-                        photos_2: 1,
-                        photos_3: 2,
-                    }))
-                }))
-            }))
         }
         if(!getIdUserFromOrder) {
             return res.status(401).json({
@@ -159,6 +142,18 @@ orderController.getData = async(req,res) => {
                 message: "Id User Tidak Ditemukan",
               });
         }
+
+        const result = getIdUserFromOrder.map((order) => ({
+            order_id: order.order_id,
+            qty: order.qty,
+            total: order.total_price,
+            status: order.status,
+            nama: order.Wisatum.name,
+            address: order.Wisatum.formatted_address
+        }))
+
+        
+  
         return res.status(201).json({
             status: "Ok",
             message: "Data Berhasil Dimuat",
