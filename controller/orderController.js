@@ -119,7 +119,7 @@ orderController.getData = async(req,res) => {
             include: [{
                 model: Wisata,
                 attributes: {
-                    exclude: ["id","id_wisata","tiket","order_date","expiredDate","createdAt", "updatedAt"]
+                    exclude: ["id","tiket","order_date","expiredDate","createdAt", "updatedAt"]
                   }
             }],
             attributes: {
@@ -150,7 +150,8 @@ orderController.getData = async(req,res) => {
             status: order.status,
             nama: order.Wisatum.name,
             address: order.Wisatum.formatted_address,
-            img: 1
+            img: 1,
+            id_wisata: order.id_wisata
         }))
 
         
