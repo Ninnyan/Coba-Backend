@@ -15,6 +15,7 @@ const route = express.Router()
 
 route.use('/places',(req,res,next) => authVerify(req,res,next),routePlaces)
 route.use('/provinces',(req,res,next) => authVerify(req,res,next),routeProvinsi)
+route.use('/photos',routeProvinsi)
 route.use('/role',routeRole)
 route.use('/activity',(req,res,next) => authVerify(req,res,next),routeActivity)
 route.use('/stock-tiket',(req,res,next) => authVerify(req,res,next),routeStockTiket)
