@@ -53,7 +53,6 @@ paymentController.payment = async(req,res) => {
                 headers: {
                     'Authorization': 'Basic ' + Buffer.from(process.env.SERVER_KEY).toString('base64'),
                     'Content-Type': 'application/json',
-                    'mode': 'no-cors'
                 }
             });
             const status = await response.json()
