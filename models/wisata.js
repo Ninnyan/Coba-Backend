@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Wisata.belongsToMany(models.User, {through: 'Order', foreignKey: 'id_wisata'})
       Wisata.hasOne(models.StockTiket, {foreignKey: 'id_wisata'})
+      Wisata.belongsTo(models.Provinsi, {foreignKey: 'id_province'})
     }
   }
   Wisata.init({

@@ -14,35 +14,35 @@ const API_KEY = process.env.API_MAP_KEY;  // Ganti dengan API key Anda
 */
 destinationPlaces.province = async(req,res) => {
     try {
-      const dataProvinsi = await Provinsi.findAll({
-        include: {
-          model: Wisata
+      const dataWisata = await Wisata.findAll({
+        include: [{
+          model: Provinsi,
+          attributes: {
+            exclude: ["id","createdAt", "updatedAt"]
+          }
+        },],
+        attributes: {
+          exclude: ["deskripsi", "place_id","jam_operasional", "formatted_address","photos_2","photos_3","createdAt", "updatedAt"]
         }
-      })
+      }, 
+        
+      )
 
-      const mappingWisata = dataProvinsi.map((data) => ({
-        id: data.id,
+      const mappingData = dataWisata.map((data) => ({
+        img: 1,
         name: data.name,
-        wisata: data.Wisata.map((data) => ({
-          id: data.id,
-          name: data.name,
-          place_id: data.place_id,
-          deskripsi: data.deskripsi,
-          address: data.formatted_address,
-          harga_tiket: data.harga_tiket,
-          jam_operasional: data.jam_operasional,
-          photos_1: 0,
-          photos_2: 1,
-          photos_3: 2
-        }))
+        price: `Rp. ${data.harga_tiket}`,
+        category: data.Provinsi.name
       }))
-      console.log(mappingWisata);
+
+      
       return res.status(201).json({
         status: "Ok",
         message: "Data Berhasil Dimuat",
-        result: mappingWisata
+        result: mappingData
       });
   } catch (error) {
+    console.log(error);
       return res.status(500).json({
         status: 'Fail',
         message: "Terjadi kesalahan pada server",
