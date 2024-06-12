@@ -29,6 +29,7 @@ destinationPlaces.province = async(req,res) => {
       )
 
       const mappingData = dataWisata.map((data) => ({
+        id_wisata: data.id,
         img: 1,
         name: data.name,
         price: `Rp. ${data.harga_tiket}`,
