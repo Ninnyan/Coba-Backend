@@ -125,11 +125,12 @@ orderController.getData = async(req,res) => {
             }],
             attributes: {
                 exclude: ['id_province', 'place_id', 'deskripsi','harga_tiket','jam_operasional','fotmatted_address','photos_1', 'photos_2']
-            }
-        }, {
+            },
+            
             where: {
                 id_user: id_user
             }
+            
         })
         if(getIdUserFromOrder.length === 0) {
             return res.status(401).json({
