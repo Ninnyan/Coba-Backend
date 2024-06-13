@@ -44,7 +44,7 @@ https://documenter.getpostman.com/view/29696074/2sA3XLDiov
 |/places/edit-destinasi?idWisata={id_wisata}|/PUT|"name": string,"deskripsi": string,"harga_tiket: string,"jam_operasional": string,"provinsi": string,"photos": 3 file|Memperbaruhi Data Wisata|/places/edit-destinasi?idWisata=87e458c4b99b4eaaaffb0|{Authorizations: Bearer {token}, Content-Type: application/json}|
 |/provinces/province?idUser={id_user}|/GET|-|Mendapatkan Semua Data Wisata|/provinces/province?idUser=ab3bb3f6b4834ff79d956|{Authorizations: Bearer {token}}|
 |/provinces/detail?idWisata={id_wisata}|/GET|-|Mendapatkan Detail Data Wisata|/provinces/detail?idWisata=87e458c4b99b4eaaaffb0|{Authorizations: Bearer {token}}|
-|/provinces/get-map?place_id={place_id}|/GET|-|Memperoleh Lokasi Google Map|/provinces/get-map?place_id=ChIJzZZVS8Ij5C0RZYldusnP-tIw|{Authorizations: Bearer {token}}|
+|/map/get-map?place_id={place_id}|/GET|-|Memperoleh Lokasi Google Map|/provinces/get-map?place_id=ChIJzZZVS8Ij5C0RZYldusnP-tIw|-|
 |/places/delete-destinasi?idWisata={id_wisata}|/DELETE|-|Menghapus Data Wisata|/places/delete-destinasi?idWisata=87e458c4b99b4eaaaffb0|{Authorizations: Bearer {token}}|
 |/provinces/photo?idWisata={id}&photoReference={pilih angka antara 0 sampai 2}|/GET|-|Mendapatkan Data Photo|/provinces/photo?idWisata=87e458c4b99b4eaaaffb0&photoReference=0|{Authorizations: Bearer {token}}|
 |/activity/get-activity|/GET|-|Mendapatakan Aktivitas login User|-|{Authorizations: Bearer {token}}|

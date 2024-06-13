@@ -9,7 +9,7 @@ routeProvinsi.get('/province',(req,res,next) => checkRole(req,res,next, 'User'),
 routeProvinsi.get('/detail',(req,res,next) => checkRole(req,res,next, 'User'),destinationPlaces.detail)
 routeProvinsi.get('/photo',destinationPlaces.getPhoto)
 routeProvinsi.get('/recomendation',(req,res,next) => checkRole(req,res,next, 'User'),destinationPlaces.recomendation)
-routeProvinsi.get('/get-map',(req,res,next) => checkRole(req,res,next, 'User'),destinationPlaces.getMap)
+routeProvinsi.get('/get-map', destinationPlaces.getMap)
 
 
 
