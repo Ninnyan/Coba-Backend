@@ -94,7 +94,8 @@ orderController.create = async(req,res) => {
 
         return res.status(201).json({
             status: "Ok",
-            message: "Order Telah Berhasil"
+            message: "Order Telah Berhasil",
+            result: qty,
         });
     } catch (error) {
         console.log(error);
