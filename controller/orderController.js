@@ -128,7 +128,7 @@ orderController.getData = async(req,res) => {
             }
         }, {
             where: {
-                id_user: idUserByQuery
+                id_user: id_user
             }
         })
         if(getIdUserFromOrder.length === 0) {
