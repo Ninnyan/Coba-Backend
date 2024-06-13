@@ -180,11 +180,7 @@ destinationPlaces.getMap = async(req,res) => {
 
     const response = await fetch(url)
     const data = await response.json()
-    return res.status(201).json({
-      status: "Ok",
-      message: "Data Berhasil Dimuat",
-      result: data.result.url
-    });
+    return res.status(201).send(data.result.url);
   } catch (error) {
     return res.status(500).json({
       status: 'Fail',
