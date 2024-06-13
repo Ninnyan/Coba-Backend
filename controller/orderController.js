@@ -13,7 +13,7 @@ orderController.create = async(req,res) => {
     const id_user = req.id_user
     const idUserByQuery = req.query.idUser
     const id_wisata = req.query.idWisata
-    const {qty} = req.body
+    const qty = req.body.qty
     try {
         if(id_user != idUserByQuery) {
             return res.status(401).json({
