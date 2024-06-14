@@ -1,4 +1,4 @@
-const {Wisata,StockTiket,User} = require('../models')
+const {Wisata,StockTiket,User, Provinsi} = require('../models')
 
 const stockTiketController = {}
 
@@ -119,14 +119,34 @@ stockTiketController.getAll = async(req,res) => {
                 message: "Data Admin tidak ada diDatabase",
             });
         }
+        const getAllData = await Wisata.findAll({
+            include: [{
+              model: Provinsi,
+              attributes: {
+                  exclude: ['createdAt', 'updatedAt', ]
+              },
 
-        const getAllDataStockTiket = await StockTiket.findAll()
+            },{
+                model: StockTiket
+            }],
+            attributes: {
+              exclude: ['createdAt', 'updatedAt']
+          }
+          })
+        const mappingData= getAllData.map((data) => ({
+            nama_destinasi: data.name,
+            provinsi: data.Provinsi.name,
+            jam_operasional: data.jam_operasional,
+            harga_tiket: data.harga_tiket,
+            stock: data.StockTiket.stock_tiket
+        }))
         return res.status(201).json({
             status: "Ok",
             message: "Data Berhaisl Dimuat",
-            data: getAllDataStockTiket
+            data: mappingData
         });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             status: 'Fail',
             message: "Terjadi kesalahan pada server",

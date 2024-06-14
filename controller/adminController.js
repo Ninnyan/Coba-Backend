@@ -184,12 +184,10 @@ adminController.getOne = async (req, res) => {
     const getUser = await User.findOne({
       where: {id: idAdmin},
       order: [["createdAt", "DESC"]],
-      attributes: {exclude: ['password', 'passwordSalt']}
+      attributes: {exclude: ['passwordSalt', 'createdAt', 'updatedAt']}
     });
     return res.status(200).json({
-      status: 'Ok',
-      message: 'Data berhasil dimuat',
-      data: getUser,
+      profile: getUser,
     });
   } catch (error) {
     return res.status(500).json({
