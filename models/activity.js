@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Activity.belongsTo(models.User, {foreignKey: 'id_user'})
     }
   }
   Activity.init({
