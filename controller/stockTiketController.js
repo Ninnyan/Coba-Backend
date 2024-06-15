@@ -134,6 +134,7 @@ stockTiketController.getAll = async(req,res) => {
           }
           })
         const mappingData= getAllData.map((data) => ({
+            id: data.id,
             nama_destinasi: data.name,
             provinsi: data.Provinsi.name,
             jam_operasional: data.jam_operasional,
