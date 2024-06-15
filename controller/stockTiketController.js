@@ -51,14 +51,14 @@ stockTiketController.create = async(req,res) => {
 
 stockTiketController.update = async(req,res) => {
     const idWisata = req.query.idWisata
-    const stockTiket = req.body.stock_tiket
+    const {stock_tiket} = req.body
     try {
         const findWisataByIdInStockTiket = await StockTiket.findOne({where:{id_wisata:idWisata}})
-        if (!stockTiket) {
+        if (!stock_tiket) {
             return res.status(401).json({
                 status: "Fail",
                 message: "Stok Masih Kosong",
-                data: typeof stockTiket
+                data: typeof stock_tiket
               });
         }
         if(!findWisataByIdInStockTiket) {
@@ -70,7 +70,7 @@ stockTiketController.update = async(req,res) => {
 
         const updateStockByAdmin = await StockTiket.update(
             {
-                stock_tiket: stockTiket
+                stock_tiket: stock_tiket
             },
             {
                 where: {
@@ -81,7 +81,7 @@ stockTiketController.update = async(req,res) => {
         return res.status(201).json({
             status: "Ok",
             message: "Stock Tiket Berhasil Diperbarui",
-            stokTiket: stockTiket
+            stokTiket: stock_tiket
         });
     } catch (error) {
         return res.status(500).json({
