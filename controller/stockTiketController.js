@@ -58,6 +58,7 @@ stockTiketController.update = async(req,res) => {
             return res.status(401).json({
                 status: "Fail",
                 message: "Stok Masih Kosong",
+                data: typeof stockTiket
               });
         }
         if(!findWisataByIdInStockTiket) {
