@@ -74,7 +74,8 @@ stockTiketController.update = async(req,res) => {
         )
         return res.status(201).json({
             status: "Ok",
-            message: "Stock Tiket Berhasil Diperbarui"
+            message: "Stock Tiket Berhasil Diperbarui",
+            stokTiket: stockTiket
         });
     } catch (error) {
         return res.status(500).json({
