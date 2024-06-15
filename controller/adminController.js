@@ -204,6 +204,13 @@ adminController.update = async (req, res) => {
       req.body;
     const cekAdmin = await User.findOne({ where: { id: idAdmin } });
     const getIdRole = await Role.findOne({where:{role: 'Admin'}})
+    const cekEmail = await User.findOne({ where: { email: email } });
+    if(cekEmail) {
+      return res.status(400).json({
+        status: "Fail",
+        message: "Email Sudah terdaftar",
+      });
+    }
 
     if (!cekAdmin) {
       return res.status(400).json({
