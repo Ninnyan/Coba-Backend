@@ -64,7 +64,7 @@ stockTiketController.update = async(req,res) => {
 
         const updateStockByAdmin = await StockTiket.update(
             {
-                stock_tiket: findWisataByIdInStockTiket.stock_tiket + stockTiket
+                stock_tiket: stockTiket
             },
             {
                 where: {
