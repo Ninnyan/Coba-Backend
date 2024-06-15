@@ -22,13 +22,14 @@ destinationPlaces.province = async(req,res) => {
           }
         },],
         attributes: {
-          exclude: ["deskripsi", "place_id","jam_operasional", "formatted_address","photos_2","photos_3","createdAt", "updatedAt"]
+          exclude: [ "place_id","jam_operasional", "formatted_address","photos_2","photos_3","createdAt", "updatedAt"]
         }
       },)
 
       const mappingData = dataWisata.map((data) => ({
         id_wisata: data.id,
         img: 1,
+        deskripsi: data.deskripsi,
         name: data.name,
         price: `Rp. ${data.harga_tiket}`,
         category: data.Provinsi.name
