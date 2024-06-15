@@ -54,7 +54,12 @@ stockTiketController.update = async(req,res) => {
     const stockTiket = req.body.stock_tiket
     try {
         const findWisataByIdInStockTiket = await StockTiket.findOne({where:{id_wisata:idWisata}})
-
+        if (!stockTiket) {
+            return res.status(401).json({
+                status: "Fail",
+                message: "Stok Masih Kosong",
+              });
+        }
         if(!findWisataByIdInStockTiket) {
             return res.status(401).json({
                 status: "Fail",
